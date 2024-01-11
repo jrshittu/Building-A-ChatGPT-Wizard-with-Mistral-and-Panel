@@ -26,12 +26,10 @@ GGUF is a new format introduced by the llama.cpp team on August 21st 2023. It is
 List of some clients and libraries that are known to support GGUF:
 1. ctransformers, a Python library with GPU accel, LangChain support, and OpenAI-compatible AI server.
 2. llama-cpp-python, a Python library with GPU accel, LangChain support, and OpenAI-compatible API server.
-3. llama.cpp. The source project for GGUF. Offers a CLI and a server option.
-4. text-generation-webui, the most widely used web UI, with many features and powerful extensions. Supports GPU acceleration.
-5. KoboldCpp, a fully featured web UI, with GPU accel across all platforms and GPU architectures. Especially good for story telling.
-6. LM Studio, an easy-to-use and powerful local GUI for Windows and macOS (Silicon), with GPU acceleration.
-7. LoLLMS Web UI, a great web UI with many interesting and unique features, including a full model library for easy model selection.
-8. Faraday.dev, an attractive and easy to use character-based chat GUI for Windows and macOS (both Silicon and Intel), with GPU acceleration.
+3. text-generation-webui, the most widely used web UI, with many features and powerful extensions. Supports GPU acceleration.
+4. LM Studio, an easy-to-use and powerful local GUI for Windows and macOS (Silicon), with GPU acceleration.
+5. LoLLMS Web UI, a great web UI with many interesting and unique features, including a full model library for easy model selection.
+6. Faraday.dev, an attractive and easy to use character-based chat GUI for Windows and macOS (both Silicon and Intel), with GPU acceleration.
 
 ## How to download GGUF files using ctransformers
 Install ctransformers
