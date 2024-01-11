@@ -32,7 +32,15 @@ List of some clients and libraries that are known to support GGUF:
 6. Faraday.dev, an attractive and easy to use character-based chat GUI for Windows and macOS (both Silicon and Intel), with GPU acceleration.
 
 ## How to download GGUF files using ctransformers
-Install ctransformers
+
+**Install Langchain**
+
+```bash
+pip install langchain
+```
+
+**Install ctransformers**
+
 ```bash
 # ctransformers with no GPU acceleration
 pip install ctransformers
