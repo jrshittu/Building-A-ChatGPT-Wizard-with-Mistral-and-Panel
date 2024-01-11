@@ -34,7 +34,7 @@ List of some clients and libraries that are known to support GGUF:
 8. Faraday.dev, an attractive and easy to use character-based chat GUI for Windows and macOS (both Silicon and Intel), with GPU acceleration.
 
 ## How to download GGUF files using ctransformers
-Install the package
+Install ctransformers
 ```bash
 # ctransformers with no GPU acceleration
 pip install ctransformers
@@ -52,17 +52,41 @@ CT_METAL=1 pip install ctransformers --no-binary ctransformers
 Now, run the code below to download the models. Make sure to free up space on your computer and connect to a good internet connection.
 
 ```python
+# imports the AutoModelForCausalLM class from the ctransformers library
 from ctransformers import AutoModelForCausalLM
 
-# Set gpu_layers to the number of layers to offload to GPU. The value is set to 0 because no GPU acceleration is available on my current system.
+# load Mistral-7B-Instruct-v0.1-GGUF, Set gpu_layers to the number of layers to offload to GPU. The value is set to 0 because no GPU acceleration is available on my current system.
 
 llm = AutoModelForCausalLM.from_pretrained("TheBloke/Mistral-7B-Instruct-v0.1-GGUF", model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf", model_type="mistral", gpu_layers=0)
 
+# call the model to generate text, starting with the prompt "AI is going to"
 print(llm("AI is going to"))
 ```
 
 The output should look like this, 
 
 ![output real](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r2zn5hsmrgl9srns4c9h.jpeg)
+
+## Build a Mistral Chatbot with Panel
+### About Panel
+Panel is an open-source Python library that lets you easily build powerful tools, dashboards and complex applications entirely in Python. To learn more about panel, kindly click [here](https://panel.holoviz.org/).
+**Requirement:** Python 3.8 or later on Linux, Windows, and Mac.
+
+**Installing Panel:** Open up a terminal and run the following command, which will install Panel with all its dependencies.
+
+```bash
+# If you're using pip
+pip install panel
+
+# if you're using conda
+conda install panel
+```
+
+
+
+Resources:
+HuggingFace: [Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
+Panel: [https://panel.holoviz.org/](https://panel.holoviz.org/)
+
 
  
