@@ -48,11 +48,10 @@ CT_METAL=1 pip install ctransformers --no-binary ctransformers
 Now, run the code below to download the models. Make sure to free up space on your computer and connect to a good internet connection.
 
 ```python
-# imports the AutoModelForCausalLM class from the ctransformers library
+# import the AutoModelForCausalLM class from the ctransformers library
 from ctransformers import AutoModelForCausalLM
 
 # load Mistral-7B-Instruct-v0.1-GGUF, Set gpu_layers to the number of layers to offload to GPU. The value is set to 0 because no GPU acceleration is available on my current system.
-
 llm = AutoModelForCausalLM.from_pretrained("TheBloke/Mistral-7B-Instruct-v0.1-GGUF", model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf", model_type="mistral", gpu_layers=0)
 
 # call the model to generate text, starting with the prompt "AI is going to"
@@ -78,8 +77,42 @@ pip install panel
 # if you're using conda
 conda install panel
 ```
+Now, let's create our first panel chatbot wizard.
 
+```python
+#  imports the Panel library as pn.
+import panel as pn
 
+# import the AutoModelForCausalLM class from the ctransformers library
+from ctransformers import AutoModelForCausalLM
+
+# activate the Panel extension
+pn.extension()
+
+# Defines a callback function with three parameters: contents (the message content), user (the user sending the message), and instance (a pn.chat.ChatInterface instance).
+async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
+    if "mistral" not in llms:
+        instance.placeholder_text = "Downloading model; please wait..."
+        llms["mistral"] = AutoModelForCausalLM.from_pretrained(
+            "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
+            model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+            gpu_layers=0, # Set gpu_layers to the number of layers to offload to GPU. The value is set to 0 because no GPU acceleration is available on my current system.
+        )
+
+    llm = llms["mistral"]
+    response = llm(contents, stream=True, max_new_tokens=1000)
+    message = ""
+    for token in response:
+        message += token
+        yield message
+
+llms = {}
+chat_interface = pn.chat.ChatInterface(callback=callback, callback_user="Mistral")
+chat_interface.send(
+    "Say Hi! to Mistral!", user="System", respond=False
+)
+chat_interface.servable()
+```
 
 ## Resources:
 
