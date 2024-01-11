@@ -54,17 +54,15 @@ Now, run the code below to download the models. Make sure to free up space on yo
 ```python
 from ctransformers import AutoModelForCausalLM
 
-# Set gpu_layers to the number of layers to offload to GPU. **Set to 0 if no GPU acceleration is available on your system.**
+# Set gpu_layers to the number of layers to offload to GPU. The value is set to 0 because no GPU acceleration is available on my current system.
 
-llm = AutoModelForCausalLM.from_pretrained("TheBloke/Mistral-7B-Instruct-v0.1-GGUF", model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf", model_type="mistral", gpu_layers=50)
+llm = AutoModelForCausalLM.from_pretrained("TheBloke/Mistral-7B-Instruct-v0.1-GGUF", model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf", model_type="mistral", gpu_layers=0)
 
 print(llm("AI is going to"))
 ```
 
-
 The output should look like this, 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/39bwbrz7gqmdkb5wyf0j.PNG)
-
+![output real](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r2zn5hsmrgl9srns4c9h.jpeg)
 
  
