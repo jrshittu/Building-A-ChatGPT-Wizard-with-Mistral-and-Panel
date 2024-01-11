@@ -49,7 +49,7 @@ CT_HIPBLAS=1 pip install ctransformers --no-binary ctransformers
 CT_METAL=1 pip install ctransformers --no-binary ctransformers
 ```
 
-Now, create and run the code below to download the models. Make sure to free up space on your computer and connect to a good internet connection.
+Now, run the code below to download the models. Make sure to free up space on your computer and connect to a good internet connection.
 
 ```python
 from ctransformers import AutoModelForCausalLM
@@ -61,6 +61,7 @@ llm = AutoModelForCausalLM.from_pretrained("TheBloke/Mistral-7B-Instruct-v0.1-GG
 print(llm("AI is going to"))
 ```
 The output should look like this, 
+
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/39bwbrz7gqmdkb5wyf0j.PNG)
 
 
