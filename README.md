@@ -79,7 +79,7 @@ pip install panel
 # if you're using conda
 conda install panel
 ```
-Now, let's create our first panel chatbot wizard.
+Now, let's create the panel chatbot wizard.
 
 ```python
 #  imports the Panel library as pn.
@@ -120,7 +120,7 @@ chat_interface.send(
 chat_interface.servable()
 ```
 
-Save the code above, the open up your terminal and run `panel serve script_title.py --autoreload --show`. Don't forget to replace the script_title.py by the name of the file.
+Save the code above, then open up the terminal and run `panel serve script_title.py --autoreload --show`. Don't forget to replace the script_title.py by the name of the file.
 
 ## Resources:
 
