@@ -91,8 +91,9 @@ pn.extension()
 
 # Defines a callback function with three parameters: contents (the message content), user (the user sending the message), and instance (a pn.chat.ChatInterface instance).
 async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
+    # Checks if a model named "mistral" is not in the llms dictionary. If not download and add it to the llms dictionary. 
     if "mistral" not in llms:
-        instance.placeholder_text = "Downloading model; please wait..."
+        instance.placeholder_text = "Let me download model, please wait..."
         llms["mistral"] = AutoModelForCausalLM.from_pretrained(
             "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
             model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf",
