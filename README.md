@@ -47,7 +47,7 @@ CT_HIPBLAS=1 pip install ctransformers --no-binary ctransformers
 CT_METAL=1 pip install ctransformers --no-binary ctransformers
 ```
 
-Now, run the code below to download the models. Make sure to free up space on your computer and connect to a good internet connection.
+Now, run the code below to download and prompt the model. Make sure to free up space on your computer and connect to a good internet connection.
 
 ```python
 # import the AutoModelForCausalLM class from the ctransformers library
