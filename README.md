@@ -83,7 +83,9 @@ conda install panel
 
 
 Resources:
+
 HuggingFace: [Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
+
 Panel: [https://panel.holoviz.org/](https://panel.holoviz.org/)
 
 
