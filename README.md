@@ -1,7 +1,5 @@
 # Building A ChatGPT Wizard with MistralAI and Panel
 
-![Gif](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m07pkz4y22fmslfzqs5o.gif)
-
 ## Introduction
 Mistral 7B is a super-smart language model with 7 billion parameters! It beats the best 13B model, Llama 2, in all tests and even outperforms the powerful 34B model, Llama 1, in reasoning, math, and code generation. How? Mistral 7B uses smart tricks like grouped-query attention (GQA) for quick thinking and sliding window attention (SWA) to handle all sorts of text lengths without slowing down.
 
@@ -68,6 +66,7 @@ The output should look like this,
 ## Build a Mistral Chatbot with Panel
 ### About Panel
 Panel is an open-source Python library that lets you easily build powerful tools, dashboards and complex applications entirely in Python. To learn more about panel, kindly click [here](https://panel.holoviz.org/).
+
 **Requirement:** Python 3.8 or later on Linux, Windows, and Mac.
 
 **Installing Panel:** Open up a terminal and run the following command, which will install Panel with all its dependencies.
@@ -82,7 +81,7 @@ conda install panel
 
 
 
-Resources:
+## Resources:
 
 HuggingFace: [Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
 
