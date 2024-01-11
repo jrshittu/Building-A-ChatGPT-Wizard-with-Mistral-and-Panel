@@ -107,13 +107,18 @@ async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
         message += token
         yield message
 
+# Initialize an empty llms dictionary and create a pn.chat.ChatInterface instance to set the callback function for processing messages 
 llms = {}
 chat_interface = pn.chat.ChatInterface(callback=callback, callback_user="Mistral")
 chat_interface.send(
     "Say Hi! to Mistral!", user="System", respond=False
 )
+
+# Make the chat interface servable to a web server.
 chat_interface.servable()
 ```
+
+Save the code above, the open up your terminal and run `panel serve script_title.py --autoreload --show`. Don't forget to replace the script_title.py by the name of the file.
 
 ## Resources:
 
