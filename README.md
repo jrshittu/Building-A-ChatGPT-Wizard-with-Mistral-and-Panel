@@ -123,7 +123,7 @@ async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
 llms = {}
 chat_interface = pn.chat.ChatInterface(callback=callback, callback_user="Mistral")
 chat_interface.send(
-    "Say Hi! to Mistral!", user="System", respond=False
+    "Send a message to get a reply from Mixtral", user="System", respond=False
 )
 
 # Make the chat interface servable to a web server.
