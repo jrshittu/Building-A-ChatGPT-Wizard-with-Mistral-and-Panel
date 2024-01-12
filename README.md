@@ -9,14 +9,26 @@ Source: [Mistral.AI Docs](https://mistral.ai/news/announcing-mistral-7b/)
 
 And there's more! Mistral AI Team fine-tuned Mistral 7B for specific tasks with Mistral 7B – Instruct. It not only outshines Llama 2 13B in chat but also rocks both human and automated tests. Best part? Mistral 7B – was released under the Apache 2.0 license. 
 
-## Using Mistral 7B Model
+In this article you'll learn about;
+
+[Using Mistral 7B Model](#use)
+
+[Mistral 7B Instruct v0.1 - GGUF.](#7b)
+
+[Building a Mistral Chatbot with Panel](#mistral)
+
+[Building a Mistral Chatbot using API](#api)
+
+[Adding memory to manage chat histories](#mem)
+
+## Using Mistral 7B Model <a name="use"></a>
 Mistral AI currently provides two types of access to Large Language Models: 
 1. An API providing pay-as-you-go access to our latest models, the API key is not currently available for the general public but you can sign up on https://auth.mistral.ai/ui/registration to join the waitlist.
-2. Open source models available under the Apache 2.0 License, available on Hugging Face or directly from the documentation. This can be downloaded and used locally.
+2. Open source models available under the Apache 2.0 License, available on Hugging Face or directly from the documentation. 
 
-For this tutorial we'll use Mistral 7B Instruct v0.1 - GGUF
+## Mistral 7B Instruct v0.1 - GGUF. <a name="7b"></a>
 
-### About GGUF
+**About GGUF**
 GGUF is a new format introduced by the llama.cpp team on August 21st 2023. It is a replacement for GGML, which is no longer supported by llama.cpp.
 
 List of some clients and libraries that are known to support GGUF:
@@ -27,13 +39,7 @@ List of some clients and libraries that are known to support GGUF:
 5. LoLLMS Web UI, a great web UI with many interesting and unique features, including a full model library for easy model selection.
 6. Faraday.dev, an attractive and easy to use character-based chat GUI for Windows and macOS (both Silicon and Intel), with GPU acceleration.
 
-## How to download GGUF files using ctransformers
-
-**Install Langchain**
-
-```bash
-pip install langchain
-```
+### How to download GGUF files using ctransformers
 
 **Install ctransformers**
 
@@ -49,6 +55,12 @@ CT_HIPBLAS=1 pip install ctransformers --no-binary ctransformers
 
 # ctransformers with Metal GPU acceleration for macOS systems only
 CT_METAL=1 pip install ctransformers --no-binary ctransformers
+```
+
+**Install Langchain**
+
+```bash
+pip install langchain
 ```
 
 Now, run the code below to download and prompt the model. Make sure to free up space on your computer and connect to a good internet connection.
@@ -68,7 +80,7 @@ The output should look like this,
 
 ![output real](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r2zn5hsmrgl9srns4c9h.jpeg)
 
-## Build a Mistral Chatbot with Panel
+## Build a Mistral Chatbot with Panel<a name="mistral"></a>
 ### About Panel
 Panel is an open-source Python library that lets you easily build powerful tools, dashboards and complex applications entirely in Python. To learn more about panel, kindly click [here](https://panel.holoviz.org/).
 
@@ -129,7 +141,7 @@ chat_interface.servable()
 To launch a server using CLI and interact with this app, simply run `panel serve app.py` and you can interact with the model, Don't forget to replace the app.py by the title of the script:
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z12r9xc8e39gsbn3ja08.png)
 
-## Build a Mistral Chatbot using API (Fastest)
+## Build a Mistral Chatbot using API (Fastest) <a name="api"></a>
 
 First install MistralAI and get your API Key from [here](https://auth.mistral.ai/ui/registration).
 
@@ -164,7 +176,7 @@ chat_interface.send(
 chat_interface.servable()
 ```
 
-## Adding memory to manage chat histories
+## Adding memory to manage chat histories<a name="mem"></a>
 Let's Demonstrates how to use the `ChatInterface` to create a chatbot using
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers). The chatbot includes a
