@@ -142,7 +142,10 @@ To launch a server using CLI and interact with this app, simply run `panel serve
 
 ## Build a Mistral Chatbot using API (Fastest) <a name="api"></a>
 
-First install MistralAI and get your API Key from [here](https://auth.mistral.ai/ui/registration).
+First install MistralAI
+`pip install mistralai`
+
+In order to use the Mistral API you'll need an API key. You can sign up for a Mistral account and create an API key from [here](https://auth.mistral.ai/ui/registration).
 
 ```python
 import panel as pn
