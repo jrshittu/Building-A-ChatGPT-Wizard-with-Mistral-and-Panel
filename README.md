@@ -86,6 +86,12 @@ conda install panel
 Now, let's create the panel chatbot wizard.
 
 ```python
+"""
+Demonstrates how to use the `ChatInterface` to create a chatbot using
+[Mistral](https://docs.mistral.ai) through
+[CTransformers](https://github.com/marella/ctransformers).
+"""
+
 #  imports the Panel library as pn.
 import panel as pn
 
