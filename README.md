@@ -250,5 +250,7 @@ HuggingFace: [Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mis
 
 Panel: [https://panel.holoviz.org/](https://panel.holoviz.org/)
 
+Github Repo: 
+
 
  
