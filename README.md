@@ -83,15 +83,11 @@ pip install panel
 # if you're using conda
 conda install panel
 ```
-Now, let's create the panel chatbot wizard.
-
-```python
-"""
-Demonstrates how to use the `ChatInterface` to create a chatbot using
+Now, let's demonstrates how to use the `ChatInterface` to create a chatbot using
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers).
-"""
 
+```python
 #  imports the Panel library as pn.
 import panel as pn
 
@@ -169,13 +165,12 @@ chat_interface.servable()
 ```
 
 ## Adding memory to manage chat histories
-```python
-"""
-Demonstrates how to use the `ChatInterface` to create a chatbot using
+Let's Demonstrates how to use the `ChatInterface` to create a chatbot using
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers). The chatbot includes a
 memory of the conversation history.
-"""
+
+```python
 
 import panel as pn
 from ctransformers import AutoConfig, AutoModelForCausalLM, Config
@@ -233,6 +228,8 @@ chat_interface.send(
 )
 chat_interface.servable()
 ```
+
+## Summary
 
 
 ## Resources:
