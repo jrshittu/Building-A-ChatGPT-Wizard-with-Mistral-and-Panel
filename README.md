@@ -131,6 +131,7 @@ chat_interface.servable()
 ```
 
 To launch a server using CLI and interact with this app, simply run `panel serve app.py` and you can interact with the model, Don't forget to replace the app.py by the title of the script:
+![hi](https://miro.medium.com/v2/resize:fit:720/format:webp/0*GK4MvDyha9mt3cBG)
 
 
 ## Resources:
