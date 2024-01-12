@@ -28,7 +28,6 @@ Mistral AI currently provides two types of access to Large Language Models:
 
 ## Mistral 7B Instruct v0.1 - GGUF. <a name="7b"></a>
 
-**About GGUF**
 GGUF is a new format introduced by the llama.cpp team on August 21st 2023. It is a replacement for GGML, which is no longer supported by llama.cpp.
 
 List of some clients and libraries that are known to support GGUF:
