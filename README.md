@@ -131,7 +131,108 @@ chat_interface.servable()
 ```
 
 To launch a server using CLI and interact with this app, simply run `panel serve app.py` and you can interact with the model, Don't forget to replace the app.py by the title of the script:
-![hi](https://miro.medium.com/v2/resize:fit:720/format:webp/0*GK4MvDyha9mt3cBG)
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z12r9xc8e39gsbn3ja08.png)
+
+## Build a Mistral Chatbot using API (Fastest)
+
+First install MistralAI and get your API Key from [here](https://auth.mistral.ai/ui/registration).
+
+```python
+import panel as pn
+from mistralai.client import MistralClient
+from mistralai.models.chat_completion import ChatMessage
+
+pn.extension()
+
+
+async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
+    messages.append(ChatMessage(role="user", content=contents))
+
+    mistral_response = ""
+    for chunk in client.chat_stream(model="mistral-tiny", messages=messages):
+        response = chunk.choices[0].delta.content
+        if response is not None:
+            mistral_response += response
+            yield mistral_response
+
+    if mistral_response:
+        messages.append(ChatMessage(role="assistant", content=mistral_response))
+
+
+messages = []
+client = MistralClient()  # api_key=os.environ.get("MISTRAL_API_KEY", None)
+chat_interface = pn.chat.ChatInterface(callback=callback, callback_user="Mistral AI")
+chat_interface.send(
+    "Send a message to get a reply from Mistral AI!", user="System", respond=False
+)
+chat_interface.servable()
+```
+
+## Adding memory to manage chat histories
+```python
+"""
+Demonstrates how to use the `ChatInterface` to create a chatbot using
+[Mistral](https://docs.mistral.ai) through
+[CTransformers](https://github.com/marella/ctransformers). The chatbot includes a
+memory of the conversation history.
+"""
+
+import panel as pn
+from ctransformers import AutoConfig, AutoModelForCausalLM, Config
+
+pn.extension()
+
+SYSTEM_INSTRUCTIONS = "Do what the user requests."
+
+
+def apply_template(history):
+    history = [message for message in history if message.user != "System"]
+    prompt = ""
+    for i, message in enumerate(history):
+        if i == 0:
+            prompt += f"<s>[INST]{SYSTEM_INSTRUCTIONS} {message.object}[/INST]"
+        else:
+            if message.user == "Mistral":
+                prompt += f"{message.object}</s>"
+            else:
+                prompt += f"""[INST]{message.object}[/INST]"""
+    return prompt
+
+
+async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
+    if "mistral" not in llms:
+        instance.placeholder_text = "Downloading model; please wait..."
+        config = AutoConfig(
+            config=Config(
+                temperature=0.5, max_new_tokens=2048, context_length=2048, gpu_layers=1
+            ),
+        )
+        llms["mistral"] = AutoModelForCausalLM.from_pretrained(
+            "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
+            model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+            config=config,
+        )
+
+    llm = llms["mistral"]
+    history = [message for message in instance.objects]
+    prompt = apply_template(history)
+    response = llm(prompt, stream=True)
+    message = ""
+    for token in response:
+        message += token
+        yield message
+
+
+llms = {}
+chat_interface = pn.chat.ChatInterface(
+    callback=callback,
+    callback_user="Mistral",
+)
+chat_interface.send(
+    "Send a message to get a reply from Mistral!", user="System", respond=False
+)
+chat_interface.servable()
+```
 
 
 ## Resources:
