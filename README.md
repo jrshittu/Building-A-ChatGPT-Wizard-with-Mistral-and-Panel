@@ -124,7 +124,8 @@ chat_interface.send(
 chat_interface.servable()
 ```
 
-Save the code above, then open up the terminal and run `panel serve script_title.py --autoreload --show`. Don't forget to replace the script_title.py by the name of the file.
+To launch a server using CLI and interact with this app, simply run `panel serve app.py` and you can interact with the model, Don't forget to replace the app.py by the title of the script:
+
 
 ## Resources:
 
