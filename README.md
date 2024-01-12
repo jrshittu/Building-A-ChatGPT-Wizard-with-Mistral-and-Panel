@@ -5,7 +5,7 @@ Mistral 7B is a super-smart language model with 7 billion parameters! It beats t
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9dmy24ao6nnz66w5qc1x.PNG)
 
-Source: [Mistral.AI](https://mistral.ai/news/announcing-mistral-7b/)
+Source: [Mistral.AI Docs](https://mistral.ai/news/announcing-mistral-7b/)
 
 And there's more! Mistral AI Team fine-tuned Mistral 7B for specific tasks with Mistral 7B – Instruct. It not only outshines Llama 2 13B in chat but also rocks both human and automated tests. Best part? Mistral 7B – was released under the Apache 2.0 license. 
 
