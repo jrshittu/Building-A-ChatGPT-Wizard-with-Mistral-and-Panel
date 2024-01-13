@@ -130,7 +130,7 @@ async def callback(contents: str, user: str, instance: pn.chat.ChatInterface):
 llms = {}
 chat_interface = pn.chat.ChatInterface(callback=callback, callback_user="Mistral")
 chat_interface.send(
-    "Send a message to get a reply from Mixtral", user="System", respond=False
+    "Send a message to get a reply from Mistral AI!", user="System", respond=False
 )
 
 # Make the chat interface servable to a web server.
@@ -172,7 +172,7 @@ messages = []
 client = MistralClient()  # api_key=os.environ.get("MISTRAL_API_KEY", None)
 chat_interface = pn.chat.ChatInterface(callback=callback, callback_user="Mistral AI")
 chat_interface.send(
-    "Send a message to get a reply from Mistral AI!", user="System", respond=False
+    "Send a message to get a reply from Mixtral!", user="System", respond=False
 )
 chat_interface.servable()
 ```
