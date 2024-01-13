@@ -145,7 +145,7 @@ Click on http://localhost:5006/app and enter a prompt to chat with the model...
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9t2nhkpni8o43a2kx0v2.gif)
 
-## Build a Mistral Chatbot using API (Fastest) <a name="api"></a>
+## Build a Mistral Chatbot using API <a name="api"></a>
 
 First install MistralAI
 `pip install mistralai`
