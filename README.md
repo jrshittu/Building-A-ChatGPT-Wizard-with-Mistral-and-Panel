@@ -75,7 +75,7 @@ llm = AutoModelForCausalLM.from_pretrained("TheBloke/Mistral-7B-Instruct-v0.1-GG
 print(llm("AI is going to"))
 ```
 
-The output should look like this, 
+The model will continue the statement as follows, 
 
 ![output real](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r2zn5hsmrgl9srns4c9h.jpeg)
 
