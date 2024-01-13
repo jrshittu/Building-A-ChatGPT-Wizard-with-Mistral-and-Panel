@@ -249,7 +249,7 @@ chat_interface.servable()
 ```
 
 ## Summary
-
+Mistral 7B is a smart opensource model which demonstrates that language models may compress knowledge more than what was previously thought.
 
 ## Resources:
 
