@@ -141,7 +141,7 @@ To launch a server using CLI and interact with this app, simply run `panel serve
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8jesgxj65q39kmice8o8.PNG)
 
-Click on http://localhost:5006/app and enter a prompt to chat with the model...
+Click on http://localhost:5006/app to launch the Web UI in a browser and enter a prompt to chat with the model...
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9t2nhkpni8o43a2kx0v2.gif)
 
