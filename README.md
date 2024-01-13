@@ -137,8 +137,11 @@ chat_interface.send(
 chat_interface.servable()
 ```
 
-To launch a server using CLI and interact with this app, simply run `panel serve app.py` and you can interact with the model, Don't forget to replace the app.py by the title of the script:
+To launch a server using CLI and interact with this app, simply run `panel serve app.py`. Don't forget to replace the app.py by the title of the script:
 
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8jesgxj65q39kmice8o8.PNG)
+
+Now, you can interact with the model...
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9t2nhkpni8o43a2kx0v2.gif)
 
 ## Build a Mistral Chatbot using API (Fastest) <a name="api"></a>
