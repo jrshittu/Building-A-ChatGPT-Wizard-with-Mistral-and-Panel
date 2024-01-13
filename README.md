@@ -62,7 +62,7 @@ CT_METAL=1 pip install ctransformers --no-binary ctransformers
 pip install langchain
 ```
 
-Now, run the code below to download and prompt the model. Make sure to free up space on your computer and connect to a good internet connection.
+Now, run the code below to download and send a prompt to the model. Make sure to free up space on your computer and connect to a good internet connection.
 
 ```python
 # import the AutoModelForCausalLM class from the ctransformers library
