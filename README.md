@@ -23,7 +23,7 @@ In this article you'll learn about;
 
 ## Access to Mistral 7B Model <a name="use"></a>
 Mistral AI currently provides two types of access to Large Language Models: 
-1. An API providing pay-as-you-go access to our latest models, the API key is not currently available for the general public but you can sign up on https://auth.mistral.ai/ui/registration to join the waitlist.
+1. An API providing pay-as-you-go access to the latest models, Sign up on https://auth.mistral.ai/ui/registration to join the waitlist.
 2. Open source models available under the Apache 2.0 License, available on Hugging Face or directly from the documentation. 
 
 ## Mistral 7B Instruct v0.1 - GGUF. <a name="7b"></a>
