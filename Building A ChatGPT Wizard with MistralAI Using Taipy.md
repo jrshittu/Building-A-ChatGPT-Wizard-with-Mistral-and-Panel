@@ -88,13 +88,27 @@ Taipy is a Python open-source library that makes it simple to create data-driven
 
 Source: [Taipy Docs](https://docs.taipy.io/en/latest/)
 
-**Requirement:** Python 3.8 or later on Linux, Windows, and Mac.
+**Requirement:** Python 3.8 or later on Linux, Windows, and Mac. 
 
 **Installing Taipy:** Open up a terminal and run the following command, which will install Taipy with all its dependencies.
 
 ```bash
-pip install taipy
+pip install taipy # If you run into any trouble installing the library, maybe you need to try a more stable python version like v3.11
 ```
+
+We're set, let say hello to Taipy...
+
+```python
+# import the library
+from taipy import Gui
+
+# Dark mode is available in Taipy but here we'll use light mode
+Gui(page="# Hello Taipy!").run(dark_mode=False)
+```
+
+Save the code as a Python file: e.g., hi_taipy.py. Run the code and wait for the client link `http://127.0.0.1:5000` to display and pop up in your browser. You can change the port if you want to run multiple servers at the same time with `Gui(...).run(port=xxxx)`.
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6w2h2jryumg8kumid3ms.PNG)
 
 Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/latest/getting_started/) to create a chatbot using
 [Mistral](https://docs.mistral.ai) through
