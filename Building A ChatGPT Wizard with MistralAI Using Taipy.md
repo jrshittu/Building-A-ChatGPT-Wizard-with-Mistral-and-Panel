@@ -107,7 +107,9 @@ from taipy import Gui
 Gui(page="# Hello Taipy!").run(dark_mode=False)
 ```
 
-Save the code as a Python file: e.g., hi_taipy.py. Run the code and wait for the client link `http://127.0.0.1:5000` to display and pop up in your browser. You can change the port if you want to run multiple servers at the same time with `Gui(...).run(port=xxxx)`.
+Save the code as a Python file: e.g., `hi_taipy.py`. 
+Run the code and wait for the client link `http://127.0.0.1:5000` to display and pop up in your browser. 
+You can change the port if you want to run multiple servers at the same time with `Gui(...).run(port=xxxx)`.
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6w2h2jryumg8kumid3ms.PNG)
 
