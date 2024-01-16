@@ -119,13 +119,15 @@ Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/late
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers).
 
-### Step 1: Create Chat Interface with Taipy
+### Step 1: Create Chat layout with Taipy
 
 ```python
-# import Gui to to create and manage graphical user interfaces.
+# import Gui to create and manage graphical user interfaces.
 from taipy.gui import Gui
 
-# Define Taipy chat layout, add a table element that occupies the full width of the available space and Create an input field with a label, using a state variable named current_prompt to store its value. hence, create a send button
+# Define Taipy chat layout, add a table element that occupies the full width of the available space
+# Create an input field with a label, using a state variable named current_prompt to store its value.
+# Create a send button
 
 chat = """
 <|table|show_all|width=100%|>
