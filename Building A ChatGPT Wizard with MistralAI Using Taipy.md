@@ -161,6 +161,12 @@ Run the app: `taipy run chat_app.py`
 
 ## Build a Mistral Chatbot using API <a name="api"></a>
 
+First install MistralAI
+`pip install mistralai`
+
+In order to use the Mistral API you'll need an API key. You can sign up for a Mistral account and create an API key from [here](https://auth.mistral.ai/ui/registration).
+
+
 ## Adding memory to manage chat histories<a name="mem"></a>
 
 ## Summary
