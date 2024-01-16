@@ -90,10 +90,9 @@ Source: [Taipy Docs](https://docs.taipy.io/en/latest/)
 
 **Requirement:** Python 3.8 or later on Linux, Windows, and Mac.
 
-**Installing Taipy:** Open up a terminal and run the following command, which will install Panel with all its dependencies.
+**Installing Taipy:** Open up a terminal and run the following command, which will install Taipy with all its dependencies.
 
 ```bash
-# Using pip
 pip install taipy
 ```
 
