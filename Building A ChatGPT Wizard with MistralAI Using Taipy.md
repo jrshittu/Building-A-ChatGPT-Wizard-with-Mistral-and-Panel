@@ -103,8 +103,10 @@ We're set, let say hello to Taipy...
 # import the library
 from taipy import Gui
 
-# Dark mode is available in Taipy but here we'll use light mode
-Gui(page="# Hello Taipy!").run(dark_mode=False)
+hello = "# Hello Taipy!" 
+
+# run the gui
+Gui(hello).run()
 ```
 
 Save the code as a Python file: e.g., `hi_taipy.py`. 
