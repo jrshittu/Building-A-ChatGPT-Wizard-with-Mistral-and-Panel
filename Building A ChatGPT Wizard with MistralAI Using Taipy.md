@@ -93,8 +93,9 @@ Source: [Taipy Docs](https://docs.taipy.io/en/latest/)
 **Installing Taipy:** Open up a terminal and run the following command, which will install Taipy with all its dependencies.
 
 ```bash
-pip install taipy # If you run into any trouble installing the library, maybe you need to try a more stable python version like v3.11
+pip install taipy
 ```
+_If you run into any trouble installing the library, maybe you need to try a more stable python version like v3.11_
 
 We're set, let say hello to Taipy...
 
