@@ -95,7 +95,7 @@ Source: [Taipy Docs](https://docs.taipy.io/en/latest/)
 ```bash
 pip install taipy
 ```
-_If you run into any trouble installing the library, maybe you need to try a more stable python version like v3.11_
+_If you run into any trouble installing the library, you can try a more stable python version like v3.11_
 
 We're set, let say hello to Taipy...
 
