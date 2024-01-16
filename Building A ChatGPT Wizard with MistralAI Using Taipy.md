@@ -155,6 +155,7 @@ tp.show(layout)
 To run this code:
 
 Save it as a Python file (e.g., `chat_app.py`)
+
 Run the app: `taipy run chat_app.py`
 
 
