@@ -15,7 +15,7 @@ In this article you'll learn about;
 
 [Mistral 7B Instruct v0.1 - GGUF.](#7b)
 
-[Building a Mistral Chatbot with Panel](#mistral)
+[Building a Mistral Chatbot with Taipy](#mistral)
 
 [Building a Mistral Chatbot using API](#api)
 
@@ -84,6 +84,8 @@ The model will continue the statement as follows,
 
 Taipy is a Python open-source library that makes it simple to create data-driven web applications. It takes care of both the visible part(Frontend) and the behind-the-scenes(Backend) operations. Its goal is to speed up the process of developing applications, from the early design stages to having a fully functional product ready for use.
 
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k24u6ko4tkjffice6thz.gif)
+
 **Requirement:** Python 3.8 or later on Linux, Windows, and Mac.
 
 **Installing Taipy:** Open up a terminal and run the following command, which will install Panel with all its dependencies.
@@ -98,7 +100,6 @@ Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/late
 [CTransformers](https://github.com/marella/ctransformers).
 
 
-
 ## Build a Mistral Chatbot using API <a name="api"></a>
 
 ## Adding memory to manage chat histories<a name="mem"></a>
@@ -110,6 +111,6 @@ Mistral 7B is a smart opensource model which demonstrates that language models m
 
 HuggingFace: [Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
 
-Taipy: [Taipy Docs](https://docs.taipy.io/en/latest/getting_started/)
+Taipy: [Taipy Docs](https://docs.taipy.io/en/latest/)
 
  
