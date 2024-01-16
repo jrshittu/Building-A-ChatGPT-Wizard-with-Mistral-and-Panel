@@ -122,16 +122,26 @@ Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/late
 ### Step 1: Create Chat Interface with Taipy
 
 ```python
-from taipy.gui import Gui, State, notify
+# import Gui to to create and manage graphical user interfaces.
+from taipy.gui import Gui
 
+# Define Taipy chat layout
 chat = """
+
+# Create a table element that occupies the full width of the available space.
 <|table|show_all|width=100%|>
+
+# Create an input field with a label, using a state variable named current_prompt to store its value.
 <|{current_prompt}|input|label=Enter a prompt here...|class_name=fullwidth|>
-<|button|label=Send|>
+
+<|button|label=Send|> # Creates a send button
 """
 
+# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface.
 Gui(chat).run()
 ```
+
+Now save and run the App
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/86jmtz6yj07f30h4cw15.PNG)
 
