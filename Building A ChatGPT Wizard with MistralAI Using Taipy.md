@@ -152,7 +152,7 @@ def handle_message_send():
 # Display the layout
 tp.show(layout)
 ```
-To run this code:
+`To run this code:`
 
 Save it as a Python file (e.g., `chat_app.py`)
 
