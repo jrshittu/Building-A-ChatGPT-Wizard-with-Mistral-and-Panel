@@ -100,6 +100,63 @@ Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/late
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers).
 
+```python
+import taipy as tp
+from ctransformers import AutoModelForCausalLM
+
+# LLM loading and response generation function
+@tp.func
+def generate_response(message: str) -> str:
+    """Loads the Mistral LLM and generates a response to a given message."""
+
+    # Load the LLM lazily (only when needed)
+    llm = tp.lazy(
+        lambda: AutoModelForCausalLM.from_pretrained(
+            "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
+            model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+            gpu_layers=0,  # Adjust GPU usage if needed
+        )
+    )
+
+    # Generate response tokens
+    response = llm()(message, stream=True, max_new_tokens=1000)
+
+    # Construct response string
+    response_message = ""
+    for token in response:
+        response_message += token
+
+    return response_message
+
+# Define the layout elements
+chat_messages = tp.textarea(label="Chat Messages", rows=10, disabled=True)
+user_message = tp.text_input(label="Your Message")
+send_button = tp.button("Send")
+
+# Arrange elements vertically
+layout = tp.vbox(chat_messages, user_message, send_button)
+
+# Callback function for the send button
+@send_button.on_click
+def handle_message_send():
+    user_message_text = user_message.value  # Retrieve user message
+    response_text = generate_response(user_message_text)  # Generate LLM response
+
+    # Update chat messages
+    chat_messages.value += f"You: {user_message_text}\n"
+    chat_messages.value += f"Mistral: {response_text}\n"
+
+    # Clear the input field
+    user_message.value = ""
+
+# Display the layout
+tp.show(layout)
+```
+To run this code:
+
+Save it as a Python file (e.g., `chat_app.py`)
+Run the app: `taipy run chat_app.py`
+
 
 ## Build a Mistral Chatbot using API <a name="api"></a>
 
