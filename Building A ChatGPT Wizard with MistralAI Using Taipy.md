@@ -86,6 +86,8 @@ Taipy is a Python open-source library that makes it simple to create data-driven
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k24u6ko4tkjffice6thz.gif)
 
+Source: [Taipy Docs](https://docs.taipy.io/en/latest/)
+
 **Requirement:** Python 3.8 or later on Linux, Windows, and Mac.
 
 **Installing Taipy:** Open up a terminal and run the following command, which will install Panel with all its dependencies.
