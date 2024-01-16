@@ -119,6 +119,27 @@ Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/late
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers).
 
+### Step 1: Create Chat Interface with Taipy
+
+```python
+from taipy.gui import Gui, State, notify
+
+chat = """
+<|table|show_all|width=100%|>
+<|{current_prompt}|input|label=Enter a prompt here...|class_name=fullwidth|>
+<|button|label=Send|>
+"""
+
+Gui(chat).run()
+```
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/86jmtz6yj07f30h4cw15.PNG)
+
+### Step 2: Activate the Button to Print the User Message
+
+
+
+
 ```python
 import taipy as tp
 from ctransformers import AutoModelForCausalLM
