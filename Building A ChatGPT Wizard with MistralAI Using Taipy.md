@@ -238,11 +238,138 @@ Run the app.....
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5fhibwr6yxh7r5kovup4.PNG)
 
 ### Step 4: Add Styles
+Let's create `main.css` and add styles for visual distinction.
 
+```css
+body {
+    overflow: hidden;
+  }
+  
+  .mistral_mssg td  {
+    position: relative;
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 20px;
+    background-color: #ff462b;
+    border-radius: 20px;
+    max-width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: large;
+  }
+  
+  .user_mssg td  {
+    position: relative;
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 20px;
+    background-color: rgb(27, 1, 27);
+    border-radius: 20px;
+    max-width: 80%;
+    float: right;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: large;
+  }
+  
+    :root {
+      --element-padding: 1.5rem;
+    }
+    
+    #root > .MuiBox-root {
+      min-height: 100%;
+    }
+    main {
+      flex: 0 0 100%;
+    }
+    
+    /**** PASSED PROMPT LIST ****/
+    
+    .past_prompts_list .MuiPaper-root {
+      background-color: var(--color-background);
+    }
+    
+    .past_prompts_list li + li {
+      border-top: 1px solid var(--color-paper);
+    }
+    
+    .past_prompts_list .MuiTreeItem-content {
+      font-style: italic;
+      padding: var(--spacing-half);
+      user-select: text !important;
+      cursor: pointer;
+    }
+    .past_prompts_list .MuiTreeItem-iconContainer {
+      display: none;
+    }
+```
+
+Now, let's add style_conv Function:
+To apply dynamic styling to the conversation table, alternating between "user_mssg" and "mistral_mssg" styles for visual distinction.
+The function takes state, idx (index of the row), and row (row number) as arguments.
+Returns "user_mssg" for even-indexed rows and "mistral_mssg" for odd-indexed rows for the ai.
+
+```python
+# access Taipy's state management features.
+from taipy.gui import Gui, State
+
+client = None
+context = ""
+conversation = {
+    "Conversation": []
+}       
+current_user_message = ""
+past_conversations = []
+selected_conv = None
+selected_row = [1]
+
+# set initial values for state variables.
+def on_init(state: State) -> None:
+    state.context = "" 
+    state.conversation = {
+        "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
+    }
+
+    state.current_user_message = ""
+    state.past_conversations = []
+    state.selected_conv = None
+    state.selected_row = [1]
+
+# Apply a style to the conversation table, add three arguments; state, index, row
+def style_conv(state: State, idx: int, row: int) -> str:
+    if idx is None:
+        return None
+    elif idx % 2 == 0:
+        return "user_mssg" # return user_mssg style
+    else:
+        return "mistral_mssg" # return mistral_mssg style
+
+
+# Create a two-column layout with a fixed 300px width for the first column.
+chat = """
+<|layout|columns=300px 1|
+<|part|render=True|class_name=sidebar|
+# Taipy **Chat**{: .color-primary} # {: .logo-text} 
+<|New Chat|button|class_name=fullwidth plain|on_action=new_chat|>
+#### Recent Chats
+<|table|show_all|width=100%|selected={selected_row}|rebuild|>
+|>
+
+<|part|render=True|class_name=p2 align-item-bottom table|
+<|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
+<|part|class_name=card mt1|
+<|{current_user_message}|input|label=Enter a prompt here...|on_action=send_message|class_name=fullwidth|>
+<|Send Prompt|button|class_name=plain fullwidth|on_action=send_message|>
+|>
+|>
+|>
+"""
+
+# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface in light mode.
+Gui(chat).run()
+```
+Save and run the code.
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4qfp3s997pffmh32vcdv.PNG)
 
 ### Step 5: Add Mistral AI
-
-The end of part one.
 
 ## Use Mistral AI API
 
