@@ -42,7 +42,7 @@ List of some clients and libraries that are known to support GGUF:
 
 ### How to download GGUF files using ctransformers
 
-**Install ctransformers**
+**Step 1: Install ctransformers**
 
 ```bash
 # ctransformers with no GPU acceleration
@@ -58,12 +58,13 @@ CT_HIPBLAS=1 pip install ctransformers --no-binary ctransformers
 CT_METAL=1 pip install ctransformers --no-binary ctransformers
 ```
 
-**Install Langchain**
+**Step 2: Install Langchain**
 
 ```bash
 pip install langchain
 ```
 
+**Step 3: Load the model**
 Now, run the code below to download and send a prompt to the model. Make sure to free up space on your computer and connect to a good internet connection.
 
 ```python
