@@ -223,7 +223,7 @@ chat = """
 |>
 """
 
-# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface in light mode.
+# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface.
 Gui(chat).run()
 ```
 Run the app.....
