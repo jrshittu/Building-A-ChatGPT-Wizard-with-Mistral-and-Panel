@@ -121,7 +121,7 @@ Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/late
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers).
 
-### Step 1: Create Chat layout with Taipy
+### Step 1: Create a Chat layout with Taipy
 
 ```python
 # import Gui to create and manage graphical user interfaces.
