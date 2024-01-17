@@ -302,7 +302,8 @@ body {
     }
 ```
 
-Now, let's add style_conv Function:
+Now, let's add `style_conv` Function:
+
 To apply dynamic styling to the conversation table, alternating between "user_mssg" and "mistral_mssg" styles for visual distinction.
 The function takes state, idx (index of the row), and row (row number) as arguments.
 Returns "user_mssg" for even-indexed rows and "mistral_mssg" for odd-indexed rows for the ai.
