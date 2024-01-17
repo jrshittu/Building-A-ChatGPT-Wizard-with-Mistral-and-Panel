@@ -15,6 +15,8 @@ In this article you'll learn about;
 
 [Mistral 7B Instruct v0.1 - GGUF.](#7b)
 
+[Say Hello Taipy!](#hi)
+
 [Building a Mistral Chatbot with Taipy](#mistral)
 
 [Building a Mistral Chatbot using API](#api)
@@ -79,8 +81,7 @@ The model will continue the statement as follows,
 
 ![output real](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r2zn5hsmrgl9srns4c9h.jpeg)
 
-## Build a Mistral Chatbot with Taipy<a name="mistral"></a>
-### About Taipy
+## Say Hello Taipy! <a name="hi"></a>
 
 Taipy is a Python open-source library that makes it simple to create data-driven web applications. It takes care of both the visible part(Frontend) and the behind-the-scenes(Backend) operations. Its goal is to speed up the process of developing applications, from the early design stages to having a fully functional product ready for use.
 
@@ -95,7 +96,7 @@ Source: [Taipy Docs](https://docs.taipy.io/en/latest/)
 ```bash
 pip install taipy
 ```
-_If you run into any trouble installing the library, you can try using a more stable python version like v3.11_
+_You may run into trouble installing the library, you can try using a more stable python version like v3.11_
 
 We're set, let say hello to Taipy...
 
@@ -115,6 +116,7 @@ You can change the port if you want to run multiple servers at the same time wit
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6w2h2jryumg8kumid3ms.PNG)
 
+## Build a Mistral Chatbot with Taipy<a name="mistral"></a>
 Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/latest/getting_started/) to create a chatbot using
 [Mistral](https://docs.mistral.ai) through
 [CTransformers](https://github.com/marella/ctransformers).
