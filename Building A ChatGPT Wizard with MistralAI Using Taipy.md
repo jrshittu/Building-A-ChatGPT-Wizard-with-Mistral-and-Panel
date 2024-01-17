@@ -143,9 +143,37 @@ Now save and run the App
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/86jmtz6yj07f30h4cw15.PNG)
 
-### Step 2: Activate the Button to Print the User Message
+### Step 2: Add Sidebar
+Now let's create a two-column layout.
 
+```python
+from taipy.gui import Gui
 
+# Create a two-column layout with a fixed 300px width for the first column.
+chat = """
+<|layout|columns=300px 1|
+<|part|render=True|class_name=sidebar|
+# Taipy **Chat**{: .color-primary} # {: .logo-text}
+
+<|Chat History|button|class_name=fullwidth plain|on_action=previous_chat|>
+|>
+
+<|part|render=True|class_name=p2 align-item-bottom table|
+<|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
+<|part|class_name=card mt1|
+<|{current_user_message}|input|label=Enter a prompt here...|on_action=send_message|class_name=fullwidth|>
+<|Send Prompt|button|class_name=plain fullwidth|on_action=send_message|>
+|>
+|>
+|>
+"""
+
+# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface in light mode.
+Gui(chat).run(dark_mode=False)
+```
+Run the code.....
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2gmxrl793irrspj1qvgt.PNG)
 
 
 ```python
