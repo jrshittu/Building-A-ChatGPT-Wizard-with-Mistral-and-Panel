@@ -175,7 +175,59 @@ Run the code.....
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2gmxrl793irrspj1qvgt.PNG)
 
-### Step 3: Add Functionality
+### Step 3: Set initial values for state variables.
+```python
+# import notify to access the function for displaying messages
+# access Taipy's state management features.
+from taipy.gui import Gui, State, notify
+
+client = None
+context = ""
+conversation = {
+    "Conversation": []
+}       
+current_user_message = ""
+past_conversations = []
+selected_conv = None
+selected_row = [1]
+
+# set initial values for state variables.
+def on_init(state: State) -> None:
+    state.context = "" 
+    state.conversation = {
+        "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
+    }
+
+    state.current_user_message = ""
+    state.past_conversations = []
+    state.selected_conv = None
+    state.selected_row = [1]
+
+# Create a two-column layout with a fixed 300px width for the first column.
+chat = """
+<|layout|columns=300px 1|
+<|part|render=True|class_name=sidebar|
+# Taipy **Chat**{: .color-primary} # {: .logo-text} 
+<|New Chat|button|class_name=fullwidth plain|on_action=new_chat|>
+#### Recent Chats
+<|{recent_chats}|table|show_all|width=100%|selected={selected_row}|rebuild|>
+|>
+
+<|part|render=True|class_name=p2 align-item-bottom table|
+<|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
+<|part|class_name=card mt1|
+<|{current_user_message}|input|label=Enter a prompt here...|on_action=send_message|class_name=fullwidth|>
+<|Send Prompt|button|class_name=plain fullwidth|on_action=send_message|>
+|>
+|>
+|>
+"""
+
+# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface in light mode.
+Gui(chat).run()
+```
+Run the app.....
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5fhibwr6yxh7r5kovup4.PNG)
 
 ### Step 4: Add Styles
 
@@ -264,5 +316,6 @@ Mistral 7B is a smart opensource model which demonstrates that language models m
 HuggingFace: [Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
 
 Taipy: [Taipy Docs](https://docs.taipy.io/en/latest/)
+
 
  
