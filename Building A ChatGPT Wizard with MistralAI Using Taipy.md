@@ -186,21 +186,19 @@ Run the code.....
 
 ### Step 3: Set initial values for state variables.
 ```python
-# import notify to access the function for displaying messages
 # access Taipy's state management features.
-from taipy.gui import Gui, State, notify
+from taipy.gui import Gui, State
 
-client = None
-context = ""
-conversation = {
-    "Conversation": []
+context = "" #  Empty string, for storing conversational context.
+conversation = { # Create a dictionary to hold the current conversation
+    "Conversation": [] 
 }       
-current_user_message = ""
-past_conversations = []
-selected_conv = None
-selected_row = [1]
+current_user_message = "" # Create an empty to capture user input.
+past_conversations = [] # Empty string for storing past conversations.
+selected_conv = None # None, for tracking a selected conversation from history..
+selected_row = [1] # A list with a single element [1] for highlighting a selected row in a table.
 
-# set initial values for state variables.
+# Sets initial values for state variables using Taipy's State.
 def on_init(state: State) -> None:
     state.context = "" 
     state.conversation = {
@@ -235,6 +233,7 @@ chat = """
 # Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface.
 Gui(chat).run()
 ```
+
 Run the app.....
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5fhibwr6yxh7r5kovup4.PNG)
 
