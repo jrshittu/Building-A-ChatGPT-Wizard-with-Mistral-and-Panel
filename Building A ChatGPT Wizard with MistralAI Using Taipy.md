@@ -125,12 +125,11 @@ Now, let's demonstrates how to use the use [Taipy](https://docs.taipy.io/en/late
 
 ```python
 # import Gui to create and manage graphical user interfaces.
-from taipy.gui import Gui
+from taipy import Gui
 
 # Define Taipy chat layout, add a table element that occupies the full width of the available space
 # Create an input field with a label, using a state variable named current_prompt to store its value.
 # Create a send button
-
 chat = """
 <|table|show_all|width=100%|>
 <|{current_prompt}|input|label=Enter a prompt here...|class_name=fullwidth|>
@@ -151,7 +150,15 @@ Now let's create a two-column layout.
 ```python
 from taipy.gui import Gui
 
-# Create a two-column layout with a fixed 300px width for the first column.
+# Define a string variable named chat containing the layout structure of the chat interface
+# Create a two-column layout with a fixed 300px width for Sidebar.
+# Define "sidebar", display a heading with styling for the chat interface title.
+# Create a button labeled "Chat History" that triggers the previous_chat action when clicked.
+# Define main part, creates a table to display the conversation history.
+# Define a card-like container for input element and button.
+# Create an input field for the user to enter their prompt.
+# Create a button labeled "Send Prompt" that triggers the send_message action when clicked.
+
 chat = """
 <|layout|columns=300px 1|
 <|part|render=True|class_name=sidebar|
