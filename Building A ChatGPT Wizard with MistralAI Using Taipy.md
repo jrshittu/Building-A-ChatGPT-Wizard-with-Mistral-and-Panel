@@ -175,6 +175,17 @@ Run the code.....
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2gmxrl793irrspj1qvgt.PNG)
 
+### Step 3: Add Functionality
+
+### Step 4: Add Styles
+
+### Step 5: Add Mistral AI
+
+The end of part one.
+
+## Use Mistral AI API
+
+## Store Chat History
 
 ```python
 import taipy as tp
