@@ -373,10 +373,6 @@ Save and run the code.
 
 ### Step 5: Add Mistral AI
 
-## Use Mistral AI API
-
-## Store Chat History
-
 ```python
 import taipy as tp
 from ctransformers import AutoModelForCausalLM
