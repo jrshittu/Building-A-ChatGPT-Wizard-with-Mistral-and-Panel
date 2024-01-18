@@ -133,7 +133,7 @@ from taipy import Gui
 # Create a send button
 chat = """
 <|table|show_all|width=100%|>
-<|{current_prompt}|input|label=Enter a prompt here...|class_name=fullwidth|>
+<|input|label=Enter a prompt here...|class_name=fullwidth|>
 <|button|label=Send|> 
 """
 
@@ -169,7 +169,7 @@ chat = """
 |>
 
 <|part|render=True|class_name=p2 align-item-bottom table|
-<|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
+<|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
 <|part|class_name=card mt1|
 <|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|>
 <|Send Prompt|button|class_name=plain fullwidth|>
@@ -282,7 +282,6 @@ Returns "user_mssg" for even-indexed rows and "mistral_mssg" for odd-indexed row
 # access Taipy's state management features.
 from taipy.gui import Gui, State
 
-client = None
 context = ""
 conversation = {
     "Conversation": []
@@ -341,6 +340,8 @@ Save and run the code.
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4qfp3s997pffmh32vcdv.PNG)
 
 ### Step 5: Add Mistral AI
+
+
 
 ```python
 import taipy as tp
