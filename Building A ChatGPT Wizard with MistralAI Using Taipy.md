@@ -330,7 +330,7 @@ Save the code as  `main.py` and run the app
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4qfp3s997pffmh32vcdv.PNG)
 
-### Step 5: Add Mistral AI
+### Step 5: Generate responses from the Mistral-7B-Instruct model
 
 ```python
 # access Taipy's state management features and notify to display messages.
