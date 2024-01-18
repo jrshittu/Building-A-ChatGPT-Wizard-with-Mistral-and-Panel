@@ -402,14 +402,6 @@ def style_conv(state: State, idx: int, row: int) -> str:
 
 # Display error notifications in the GUI.
 def on_exception(state, function_name: str, ex: Exception) -> None:
-    """
-    Catches exceptions and notifies user in Taipy GUI
-
-    Args:
-        state (State): Taipy GUI state
-        function_name (str): Name of function where exception occured
-        ex (Exception): Exception
-    """
     notify(state, "error", f"An error occured in {function_name}: {ex}")
 
 # Create a two-column layout with sidebar and conversation area.
