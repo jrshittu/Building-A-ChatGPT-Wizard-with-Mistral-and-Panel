@@ -165,14 +165,14 @@ chat = """
 <|part|render=True|class_name=sidebar|
 # Taipy **Chat**{: .color-primary} # {: .logo-text}
 
-<|Chat History|button|class_name=fullwidth plain|on_action=previous_chat|>
+<|Chat History|button|class_name=fullwidth plain|>
 |>
 
 <|part|render=True|class_name=p2 align-item-bottom table|
 <|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
 <|part|class_name=card mt1|
-<|{current_user_message}|input|label=Enter a prompt here...|on_action=send_message|class_name=fullwidth|>
-<|Send Prompt|button|class_name=plain fullwidth|on_action=send_message|>
+<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|>
+<|Send Prompt|button|class_name=plain fullwidth|>
 |>
 |>
 |>
@@ -216,7 +216,7 @@ chat = """
 <|layout|columns=300px 1|
 <|part|render=True|class_name=sidebar|
 # Taipy **Chat**{: .color-primary} # {: .logo-text} 
-<|New Chat|button|class_name=fullwidth plain|on_action=new_chat|>
+<|New Chat|button|class_name=fullwidth plain|>
 #### Recent Chats
 <|{recent_chats}|table|show_all|width=100%|selected={selected_row}|rebuild|>
 |>
@@ -224,8 +224,8 @@ chat = """
 <|part|render=True|class_name=p2 align-item-bottom table|
 <|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
 <|part|class_name=card mt1|
-<|{current_user_message}|input|label=Enter a prompt here...|on_action=send_message|class_name=fullwidth|>
-<|Send Prompt|button|class_name=plain fullwidth|on_action=send_message|>
+<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|>
+<|Send Prompt|button|class_name=plain fullwidth|>
 |>
 |>
 |>
@@ -246,7 +246,7 @@ body {
     overflow: hidden;
   }
   
-  .mistral_mssg td  {
+.mistral_mssg td  {
     position: relative;
     display: inline-block;
     margin: 10px 10px;
@@ -255,10 +255,10 @@ body {
     border-radius: 20px;
     max-width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-size: large;
+    font-size: medium;
   }
   
-  .user_mssg td  {
+.user_mssg td  {
     position: relative;
     display: inline-block;
     margin: 10px 10px;
@@ -268,39 +268,8 @@ body {
     max-width: 80%;
     float: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-size: large;
+    font-size: medium;
   }
-  
-    :root {
-      --element-padding: 1.5rem;
-    }
-    
-    #root > .MuiBox-root {
-      min-height: 100%;
-    }
-    main {
-      flex: 0 0 100%;
-    }
-    
-    /**** PASSED PROMPT LIST ****/
-    
-    .past_prompts_list .MuiPaper-root {
-      background-color: var(--color-background);
-    }
-    
-    .past_prompts_list li + li {
-      border-top: 1px solid var(--color-paper);
-    }
-    
-    .past_prompts_list .MuiTreeItem-content {
-      font-style: italic;
-      padding: var(--spacing-half);
-      user-select: text !important;
-      cursor: pointer;
-    }
-    .past_prompts_list .MuiTreeItem-iconContainer {
-      display: none;
-    }
 ```
 
 Now, let's add `style_conv` Function:
@@ -350,7 +319,7 @@ chat = """
 <|layout|columns=300px 1|
 <|part|render=True|class_name=sidebar|
 # Taipy **Chat**{: .color-primary} # {: .logo-text} 
-<|New Chat|button|class_name=fullwidth plain|on_action=new_chat|>
+<|New Chat|button|class_name=fullwidth plain|>
 #### Recent Chats
 <|table|show_all|width=100%|selected={selected_row}|rebuild|>
 |>
@@ -358,8 +327,8 @@ chat = """
 <|part|render=True|class_name=p2 align-item-bottom table|
 <|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
 <|part|class_name=card mt1|
-<|{current_user_message}|input|label=Enter a prompt here...|on_action=send_message|class_name=fullwidth|>
-<|Send Prompt|button|class_name=plain fullwidth|on_action=send_message|>
+<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|>
+<|Send Prompt|button|class_name=plain fullwidth|>
 |>
 |>
 |>
