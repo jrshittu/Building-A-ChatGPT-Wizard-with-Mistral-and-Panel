@@ -195,9 +195,6 @@ conversation = {
     "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
 }      
 current_user_message = ""
-past_conversations = []
-selected_conv = None
-selected_row = [1]
 
 # set initial values for state variables.
 def on_init(state: State) -> None:
@@ -208,7 +205,7 @@ def on_init(state: State) -> None:
 
     state.current_user_message = ""
 
-# Create a two-column layout with a fixed 300px width for the first column.
+# Create a two-column layout with a fixed 300px width for the sidebar.
 chat = """
 <|layout|columns=300px 1|
 <|part|render=True|class_name=sidebar|
@@ -347,9 +344,6 @@ conversation = {
     "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
 }      
 current_user_message = ""
-past_conversations = []
-selected_conv = None
-selected_row = [1]
 
 # set initial values for state variables.
 def on_init(state: State) -> None:
