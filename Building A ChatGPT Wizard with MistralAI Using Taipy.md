@@ -284,9 +284,6 @@ conversation = {
     "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
 }      
 current_user_message = ""
-past_conversations = []
-selected_conv = None
-selected_row = [1]
 
 # set initial values for state variables.
 def on_init(state: State) -> None:
@@ -345,7 +342,7 @@ from taipy.gui import Gui, State, notify
 # access ctransformers for the model.
 from ctransformers import AutoModelForCausalLM
 
-context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
+context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello\nMistralAI: Hi there!   What would you like to talk about today?"
 conversation = {
     "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
 }      
@@ -356,14 +353,14 @@ selected_row = [1]
 
 # set initial values for state variables.
 def on_init(state: State) -> None:
-    state.context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
+    state.context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello\nMistralAI: Hi there!   What would you like to talk about today?"
     state.conversation = {
         "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
     }
 
     state.current_user_message = ""
 
-# create a callback function that will be called when the user sends prompt
+# create a callback function to asynchronously generate responses from the Mistral-7B-Instruct model using stream=True for incremental generation.
 async def callback(state: State, prompt: str) -> str:
     if "mistral" not in llms:
         llms["mistral"] = AutoModelForCausalLM.from_pretrained(
@@ -381,6 +378,7 @@ async def callback(state: State, prompt: str) -> str:
 
 llms = {} # dictionary to store the loaded models
 
+# Prepare the context for model interaction and call callback for response generation.
 def update_context(state: State) -> None:
     state.context += f"You: \n {state.current_user_message}\n\n MistralAI:"
     answer = callback(state, state.context).replace("\n", "")
@@ -388,9 +386,8 @@ def update_context(state: State) -> None:
     state.selected_row = [len(state.conversation["Conversation"]) + 1]
     return answer
 
-
+# Handle user message submission, update conversation history, and notify the user.
 def send_message(state: State) -> None:
-
     notify(state, "info", "Sending message...")
     answer = update_context(state)
     conv = state.conversation._dict.copy()
@@ -409,6 +406,7 @@ def style_conv(state: State, idx: int, row: int) -> str:
     else:
         return "mistral_mssg" # return mistral_mssg style
 
+# Display error notifications in the GUI.
 def on_exception(state, function_name: str, ex: Exception) -> None:
     """
     Catches exceptions and notifies user in Taipy GUI
@@ -420,7 +418,7 @@ def on_exception(state, function_name: str, ex: Exception) -> None:
     """
     notify(state, "error", f"An error occured in {function_name}: {ex}")
 
-# Create a two-column layout with a fixed 300px width for the first column.
+# Create a two-column layout with sidebar and conversation area.
 chat = """
 <|layout|columns=300px 1|
 <|part|render=True|class_name=sidebar|
@@ -433,14 +431,14 @@ chat = """
 <|part|render=True|class_name=p2 align-item-bottom table|
 <|{conversation}|table|style=style_conv|show_all|width=100%|rebuild|>
 <|part|class_name=card mt1|
-<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|on_action=callback|>
+<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|on_enter=callback|>
 <|Send Prompt|button|class_name=plain fullwidth|on_click=callback|>
 |>
 |>
 |>
 """
 
-# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface in light mode.
+# Create a Gui object and starts the UI event loop with debugging, dark mode, and a reloader.
 Gui(chat).run(debug=True, dark_mode=True, use_reloader=True)
 ```
 `To run this code:`
