@@ -232,10 +232,6 @@ Run the app.....
 Let's create `main.css` and add styles for visual distinction.
 
 ```css
-body {
-    overflow: hidden;
-  }
-  
 .mistral_mssg td  {
     position: relative;
     display: inline-block;
@@ -427,7 +423,7 @@ Gui(chat).run(debug=True, dark_mode=True, use_reloader=True)
 
 Save the code as  `main.py` and run the app
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ztpbl11eetpjqt1ukbpk.PNG)
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qmrqa3qlf8asyz4dgksr.PNG)
 
 Now you can chat and interact with mistralai.....
 
