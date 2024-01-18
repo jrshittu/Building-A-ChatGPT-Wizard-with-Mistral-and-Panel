@@ -195,9 +195,6 @@ conversation = { # Create a dictionary to hold the current conversation
     "Conversation": [] 
 }       
 current_user_message = "" # Create an empty to capture user input.
-past_conversations = [] # Empty string for storing past conversations.
-selected_conv = None # None, for tracking a selected conversation from history..
-selected_row = [1] # A list with a single element [1] for highlighting a selected row in a table.
 
 # Sets initial values for state variables using Taipy's State.
 def on_init(state: State) -> None:
@@ -207,9 +204,6 @@ def on_init(state: State) -> None:
     }
 
     state.current_user_message = ""
-    state.past_conversations = []
-    state.selected_conv = None
-    state.selected_row = [1]
 
 # Create a two-column layout with a fixed 300px width for the first column.
 chat = """
@@ -218,11 +212,11 @@ chat = """
 # Taipy **Chat**{: .color-primary} # {: .logo-text} 
 <|New Chat|button|class_name=fullwidth plain|>
 #### Recent Chats
-<|{recent_chats}|table|show_all|width=100%|selected={selected_row}|rebuild|>
+<|table|show_all|width=100%|rebuild|>
 |>
 
 <|part|render=True|class_name=p2 align-item-bottom table|
-<|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
+<|{conversation}|table|style=style_conv|show_all|width=100%|rebuild|>
 <|part|class_name=card mt1|
 <|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|>
 <|Send Prompt|button|class_name=plain fullwidth|>
@@ -287,9 +281,6 @@ conversation = {
     "Conversation": []
 }       
 current_user_message = ""
-past_conversations = []
-selected_conv = None
-selected_row = [1]
 
 # set initial values for state variables.
 def on_init(state: State) -> None:
@@ -299,9 +290,6 @@ def on_init(state: State) -> None:
     }
 
     state.current_user_message = ""
-    state.past_conversations = []
-    state.selected_conv = None
-    state.selected_row = [1]
 
 # Apply a style to the conversation table, add three arguments; state, index, row
 def style_conv(state: State, idx: int, row: int) -> str:
@@ -320,11 +308,11 @@ chat = """
 # Taipy **Chat**{: .color-primary} # {: .logo-text} 
 <|New Chat|button|class_name=fullwidth plain|>
 #### Recent Chats
-<|table|show_all|width=100%|selected={selected_row}|rebuild|>
+<|table|show_all|width=100%|rebuild|>
 |>
 
 <|part|render=True|class_name=p2 align-item-bottom table|
-<|{conversation}|table|style=style_conv|show_all|width=100%|selected={selected_row}|rebuild|>
+<|{conversation}|table|style=style_conv|show_all|width=100%|rebuild|>
 <|part|class_name=card mt1|
 <|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|>
 <|Send Prompt|button|class_name=plain fullwidth|>
