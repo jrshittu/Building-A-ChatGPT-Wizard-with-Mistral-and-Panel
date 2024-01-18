@@ -412,8 +412,8 @@ chat = """
 <|part|render=True|class_name=p2 align-item-bottom table|
 <|{conversation}|table|style=style_conv|show_all|width=100%|rebuild|>
 <|part|class_name=card mt1|
-<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|on_enter=callback|>
-<|Send Prompt|button|class_name=plain fullwidth|on_click=callback|>
+<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|on_action=callback|>
+<|Send Prompt|button|class_name=plain fullwidth|on_action=callback|>
 |>
 |>
 |>
