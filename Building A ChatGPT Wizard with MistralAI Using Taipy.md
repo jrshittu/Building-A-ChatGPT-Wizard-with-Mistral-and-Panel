@@ -19,6 +19,8 @@ In this article you'll learn about;
 
 [Building a Mistral Chatbot with Taipy](#mistral)
 
+[Building Chatbot with Mistral API and Taipy](#api)
+
 ## Access to Mistral 7B Model <a name="use"></a>
 Mistral AI currently provides two types of access to Large Language Models: 
 1. An API providing pay-as-you-go access to the latest models, Sign up on https://auth.mistral.ai/ui/registration to join the waitlist.
@@ -61,6 +63,7 @@ pip install langchain
 ```
 
 **Step 3: Load the model**
+
 Now, run the code below to download and send a prompt to the model. Make sure to free up space on your computer and connect to a good internet connection.
 
 ```python
