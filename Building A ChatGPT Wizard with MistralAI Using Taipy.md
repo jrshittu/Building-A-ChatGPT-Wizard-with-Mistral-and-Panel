@@ -190,15 +190,18 @@ Run the code.....
 # access Taipy's state management features.
 from taipy.gui import Gui, State
 
-context = "" #  Empty string, for storing conversational context.
-conversation = { # Create a dictionary to hold the current conversation
-    "Conversation": [] 
-}       
-current_user_message = "" # Create an empty to capture user input.
+context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
+conversation = {
+    "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
+}      
+current_user_message = ""
+past_conversations = []
+selected_conv = None
+selected_row = [1]
 
-# Sets initial values for state variables using Taipy's State.
+# set initial values for state variables.
 def on_init(state: State) -> None:
-    state.context = "" 
+    state.context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
     state.conversation = {
         "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
     }
@@ -276,15 +279,18 @@ Returns "user_mssg" for even-indexed rows and "mistral_mssg" for odd-indexed row
 # access Taipy's state management features.
 from taipy.gui import Gui, State
 
-context = ""
+context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
 conversation = {
-    "Conversation": []
-}       
+    "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
+}      
 current_user_message = ""
+past_conversations = []
+selected_conv = None
+selected_row = [1]
 
 # set initial values for state variables.
 def on_init(state: State) -> None:
-    state.context = "" 
+    state.context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
     state.conversation = {
         "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
     }
@@ -324,70 +330,122 @@ chat = """
 # Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface in light mode.
 Gui(chat).run()
 ```
-Save and run the code.
+`To run this code:`
+
+Save the code as  `main.py` and run the app
+
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4qfp3s997pffmh32vcdv.PNG)
 
 ### Step 5: Add Mistral AI
 
-
-
 ```python
-import taipy as tp
+# access Taipy's state management features and notify to display messages.
+from taipy.gui import Gui, State, notify
+
+# access ctransformers for the model.
 from ctransformers import AutoModelForCausalLM
 
-# LLM loading and response generation function
-@tp.func
-def generate_response(message: str) -> str:
-    """Loads the Mistral LLM and generates a response to a given message."""
+context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
+conversation = {
+    "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
+}      
+current_user_message = ""
+past_conversations = []
+selected_conv = None
+selected_row = [1]
 
-    # Load the LLM lazily (only when needed)
-    llm = tp.lazy(
-        lambda: AutoModelForCausalLM.from_pretrained(
+# set initial values for state variables.
+def on_init(state: State) -> None:
+    state.context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello, who are you?\nMistralAI: I am an AI created by Mistral. How can I help you today? "
+    state.conversation = {
+        "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
+    }
+
+    state.current_user_message = ""
+
+# create a callback function that will be called when the user sends prompt
+async def callback(state: State, prompt: str) -> str:
+    if "mistral" not in llms:
+        llms["mistral"] = AutoModelForCausalLM.from_pretrained(
             "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
             model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf",
-            gpu_layers=0,  # Adjust GPU usage if needed
+            gpu_layers=1,
         )
-    )
 
-    # Generate response tokens
-    response = llm()(message, stream=True, max_new_tokens=1000)
-
-    # Construct response string
-    response_message = ""
+    llm = llms["mistral"]
+    response = llm(state, stream=True, max_new_tokens=1000)
+    message = ""
     for token in response:
-        response_message += token
+        message += token
+        yield message
 
-    return response_message
+llms = {} # dictionary to store the loaded models
 
-# Define the layout elements
-chat_messages = tp.textarea(label="Chat Messages", rows=10, disabled=True)
-user_message = tp.text_input(label="Your Message")
-send_button = tp.button("Send")
+def update_context(state: State) -> None:
+    state.context += f"You: \n {state.current_user_message}\n\n MistralAI:"
+    answer = callback(state, state.context).replace("\n", "")
+    state.context += answer
+    state.selected_row = [len(state.conversation["Conversation"]) + 1]
+    return answer
 
-# Arrange elements vertically
-layout = tp.vbox(chat_messages, user_message, send_button)
 
-# Callback function for the send button
-@send_button.on_click
-def handle_message_send():
-    user_message_text = user_message.value  # Retrieve user message
-    response_text = generate_response(user_message_text)  # Generate LLM response
+def send_message(state: State) -> None:
 
-    # Update chat messages
-    chat_messages.value += f"You: {user_message_text}\n"
-    chat_messages.value += f"Mistral: {response_text}\n"
+    notify(state, "info", "Sending message...")
+    answer = update_context(state)
+    conv = state.conversation._dict.copy()
+    conv["Conversation"] += [state.current_user_message, answer]
+    state.current_user_message = ""
+    state.conversation = conv
+    notify(state, "success", "Response received!")
 
-    # Clear the input field
-    user_message.value = ""
 
-# Display the layout
-tp.show(layout)
+# Apply a style to the conversation table, add three arguments; state, index, row
+def style_conv(state: State, idx: int, row: int) -> str:
+    if idx is None:
+        return None
+    elif idx % 2 == 0:
+        return "user_mssg" # return user_mssg style
+    else:
+        return "mistral_mssg" # return mistral_mssg style
+
+def on_exception(state, function_name: str, ex: Exception) -> None:
+    """
+    Catches exceptions and notifies user in Taipy GUI
+
+    Args:
+        state (State): Taipy GUI state
+        function_name (str): Name of function where exception occured
+        ex (Exception): Exception
+    """
+    notify(state, "error", f"An error occured in {function_name}: {ex}")
+
+# Create a two-column layout with a fixed 300px width for the first column.
+chat = """
+<|layout|columns=300px 1|
+<|part|render=True|class_name=sidebar|
+# Taipy **Chat**{: .color-primary} # {: .logo-text} 
+<|New Chat|button|class_name=fullwidth plain|>
+#### Recent Chats
+<|table|show_all|width=100%|rebuild|>
+|>
+
+<|part|render=True|class_name=p2 align-item-bottom table|
+<|{conversation}|table|style=style_conv|show_all|width=100%|rebuild|>
+<|part|class_name=card mt1|
+<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|on_action=callback|>
+<|Send Prompt|button|class_name=plain fullwidth|on_click=callback|>
+|>
+|>
+|>
+"""
+
+# Instantiate a Gui object with the defined layout and starts the UI event loop, render and display the interface in light mode.
+Gui(chat).run(debug=True, dark_mode=True, use_reloader=True)
 ```
 `To run this code:`
 
-Save it as a Python file (e.g., `chat_app.py`)
-
-Run the app: `taipy run chat_app.py`
+Save the code as  `main.py` and run the app
 
 
 ## Build a Mistral Chatbot using API <a name="api"></a>
