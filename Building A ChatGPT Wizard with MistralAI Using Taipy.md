@@ -19,10 +19,6 @@ In this article you'll learn about;
 
 [Building a Mistral Chatbot with Taipy](#mistral)
 
-[Building a Mistral Chatbot using API](#api)
-
-[Adding memory to manage chat histories](#mem)
-
 ## Access to Mistral 7B Model <a name="use"></a>
 Mistral AI currently provides two types of access to Large Language Models: 
 1. An API providing pay-as-you-go access to the latest models, Sign up on https://auth.mistral.ai/ui/registration to join the waitlist.
@@ -432,18 +428,6 @@ Gui(chat).run(debug=True, dark_mode=True, use_reloader=True)
 Save the code as  `main.py` and run the app
 
 
-## Build a Mistral Chatbot using API <a name="api"></a>
-
-First install MistralAI
-`pip install mistralai`
-
-In order to use the Mistral API you'll need an API key. You can sign up for a Mistral account and create an API key from [here](https://auth.mistral.ai/ui/registration).
-
-
-## Adding memory to manage chat histories<a name="mem"></a>
-
-## Summary
-Mistral 7B is a smart opensource model which demonstrates that language models may compress knowledge more than what was previously thought.
 
 ## Resources:
 
