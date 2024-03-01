@@ -328,10 +328,10 @@ Save the code as  `main.py` and run the app
 ### Step 5: Generate responses from the Mistral-7B-Instruct model
 
 ```python
-# access Taipy's state management features and notify to display messages.
+# Access Taipy's state management features and notify to display messages.
 from taipy.gui import Gui, State, notify
 
-# access ctransformers for the model.
+# Access ctransformers for the model.
 from ctransformers import AutoModelForCausalLM
 
 context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello\nMistralAI: Hi there!   What would you like to talk about today?"
@@ -339,65 +339,76 @@ conversation = {
     "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
 }      
 current_user_message = ""
+past_conversations = []
+selected_conv = None
+selected_row = [1]
 
-# set initial values for state variables.
+# Set initial values for state variables.
 def on_init(state: State) -> None:
     state.context = "The following is a conversation with an MistralAI assistant.\n\nUser: Hello\nMistralAI: Hi there!   What would you like to talk about today?"
     state.conversation = {
         "Conversation": ["Hello", "Hi there!   What would you like to talk about today?"]
     }
-
     state.current_user_message = ""
+    state.past_conversations = []
+    state.selected_conv = None
+    state.selected_row = [1]
 
-# create a callback function to asynchronously generate responses from the Mistral-7B-Instruct model using stream=True for incremental generation.
-async def callback(state: State, prompt: str) -> str:
+# Create a callback function to asynchronously generate responses from the Mistral-7B-Instruct model using stream=True for incremental generation.
+def request(state: State, prompt: str) -> str:
+    llms = {}  # Dictionary to store the loaded models
     if "mistral" not in llms:
         llms["mistral"] = AutoModelForCausalLM.from_pretrained(
             "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
             model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf",
-            gpu_layers=1,
+            gpu_layers=0, # Set gpu_layers to the number of layers to offload to GPU. The value is set to 0 because no GPU acceleration is available on my current system.
         )
 
     llm = llms["mistral"]
-    response = llm(state, stream=True, max_new_tokens=1000)
-    message = ""
+    response = llm(prompt , stream=True, max_new_tokens=1000)  # Call the llm function with the correct argument
+    message = [
+            {
+                "role": "user",
+                "content": f"{prompt}",
+            }
+        ]
+    # Append each generated token to the message list
     for token in response:
         message += token
-        yield message
 
-llms = {} # dictionary to store the loaded models
+    # Return the generated message
+    return message
+
 
 # Prepare the context for model interaction and call callback for response generation.
-def update_context(state: State) -> None:
-    state.context += f"You: \n {state.current_user_message}\n\n MistralAI:"
-    answer = callback(state, state.context).replace("\n", "")
-    state.context += answer
+def update_context(state: State, prompt: str) -> None:
+    state.context += f"Human: \n {prompt}\n\n AI:"
+    answer = request(state, prompt).replace("\n", "")  # Call the request function with the correct arguments
+    state.context += answer  # Update the state.context variable with the new response
     state.selected_row = [len(state.conversation["Conversation"]) + 1]
     return answer
 
 # Handle user message submission, update conversation history, and notify the user.
-def send_message(state: State) -> None:
+def send_message(state: State, prompt: str) -> None:
     notify(state, "info", "Sending message...")
-    answer = update_context(state)
-    conv = state.conversation._dict.copy()
-    conv["Conversation"] += [state.current_user_message, answer]
-    state.current_user_message = ""
-    state.conversation = conv
+    answer = update_context(state, prompt)  # Call the update_context function with the correct arguments
+    conv = conversation._dict.copy()  # Access the conversation variable directly
+    conv["Conversation"] += [prompt, answer]  # Add the user's message and the model's response to the conversation history
+    conversation = conv  # Access the conversation variable directly
     notify(state, "success", "Response received!")
-
 
 # Apply a style to the conversation table, add three arguments; state, index, row
 def style_conv(state: State, idx: int, row: int) -> str:
     if idx is None:
         return None
     elif idx % 2 == 0:
-        return "user_mssg" # return user_mssg style
+        return "user_mssg"  # return user_mssg style
     else:
-        return "mistral_mssg" # return mistral_mssg style
+        return "mistral_mssg"  # return mistral_mssg style
 
 # Display error notifications in the GUI.
 def on_exception(state, function_name: str, ex: Exception) -> None:
-    notify(state, "error", f"An error occured in {function_name}: {ex}")
+    notify(state, "error", f"An error occurred in {function_name}: {ex}")
 
 # Create a two-column layout with sidebar and conversation area.
 chat = """
@@ -412,8 +423,8 @@ chat = """
 <|part|render=True|class_name=p2 align-item-bottom table|
 <|{conversation}|table|style=style_conv|show_all|width=100%|rebuild|>
 <|part|class_name=card mt1|
-<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|on_action=callback|>
-<|Send Prompt|button|class_name=plain fullwidth|on_action=callback|>
+<|{current_user_message}|input|label=Enter a prompt here...|class_name=fullwidth|on_action=send_message|>
+<|Send Prompt|button|class_name=plain fullwidth|on_action=send_message|>
 |>
 |>
 |>
